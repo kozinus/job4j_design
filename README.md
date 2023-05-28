@@ -10,7 +10,7 @@ Tree
 Socket
 Логгирование
 Сериализация
-Настройка PostgreSQL
+Настройка PostgresSQL
 Create Update Insert
 Query
 Outer join
