@@ -19,14 +19,12 @@ public class Generics {
         generics.printObject(third);
         System.out.println();
 
-        generics.printBoundedWildCard(first);
         generics.printBoundedWildCard(second);
         generics.printBoundedWildCard(third);
         System.out.println();
 
         generics.printLowerBoundedWildCard(first);
         generics.printLowerBoundedWildCard(second);
-        generics.printLowerBoundedWildCard(third);
     }
 
     /*
@@ -45,8 +43,8 @@ public class Generics {
     тут лучше рассматривать наследников от Animal,
     поэтому нужно применить bounded wildcard и заменить обобщение на <? extends Animal>
      */
-    public void printBoundedWildCard(List<? extends Animal> list) {
-        for (Iterator<? extends Animal> iterator = list.iterator(); iterator.hasNext();) {
+    public void printBoundedWildCard(List<? extends Predator> list) {
+        for (Iterator<? extends Predator> iterator = list.iterator(); iterator.hasNext();) {
             Object next = iterator.next();
             System.out.println("Текущий элемент: " + next);
         }
@@ -57,8 +55,8 @@ public class Generics {
     тут лучше рассматривать родителей Tiger,
     поэтому нужно применить bounded wildcard и заменить обобщение на <? super Tiger>
      */
-    public void printLowerBoundedWildCard(List<? super Tiger> list) {
-        for (Iterator<? super Tiger> iterator = list.iterator(); iterator.hasNext();) {
+    public void printLowerBoundedWildCard(List<? super Predator> list) {
+        for (Iterator<? super Predator> iterator = list.iterator(); iterator.hasNext();) {
             Object next = iterator.next();
             System.out.println("Текущий элемент: " + next);
         }
