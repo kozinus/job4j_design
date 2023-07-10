@@ -21,9 +21,8 @@ public class RevertLinked<T> implements Iterable<T> {
     }
 
     public boolean revert() {
-        boolean goal = false;
-        if (head != null && head.next != null) {
-            goal = true;
+        boolean goal = head != null && head.next != null;
+        if (goal) {
             Node<T> prev = null;
             while (head.next != null) {
                 Node<T> next = head.next;
