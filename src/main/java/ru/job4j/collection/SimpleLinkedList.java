@@ -15,16 +15,15 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     public void add(E value) {
         if (head == null) {
             head = new Node<>(value, null);
-            size++;
         } else {
             Node<E> last = head;
             for (int i = 1; i < size; i++) {
                 last = last.next;
             }
             last.next = new Node<>(value, null);
-            modCount++;
-            size++;
         }
+        modCount++;
+        size++;
     }
 
     @Override
