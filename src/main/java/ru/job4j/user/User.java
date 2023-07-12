@@ -27,6 +27,7 @@ public class User {
         int hash2 = hashcode2 ^ (hashcode2 >>> 16);
         int bucket2 = hash2 & 15;
         map.put(user1, new Object());
+        System.out.println(map);
         map.put(user2, new Object());
         System.out.printf("user1 - хэшкод: %s, хэш: %s, бакет: %s",
                 hashcode1, hash1, bucket1);
@@ -37,9 +38,28 @@ public class User {
         System.out.println("\nРавенство хэшкодов: " + Integer.compare(hashcode1, hashcode2));
         System.out.println(map);
         /**
-         * Пары попали в разные бакеты, имея разные хэшкоды.
-         * Производилось, они разные, потому что брались от разных объектов
-         * Производилось. Объекты не равны, поэтому совпадение их хэшкодов и бакетов очень маловероятно
+         * Пары попали в один бакет, имея равные хэшкоды.
+         * Производилось, они равные, потому что был переопределён hashCode
+         * Производилось. Объекты равны, был переопределён equals
          */
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return children == user.children
+                && Objects.equals(name, user.name)
+                && Objects.equals(birthday, user.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
     }
 }
