@@ -34,10 +34,11 @@ public class User {
         System.out.printf("user2 - хэшкод: %s, хэш: %s, бакет: %s",
                 hashcode2, hash2, bucket2);
         System.out.println("\nРавенство объектов: " + user1.equals(user2));
+        System.out.println("\nРавенство хэшкодов: " + Integer.compare(hashcode1, hashcode2));
         System.out.println(map);
         /**
          * Пары попали в разные бакеты, имея разные хэшкоды.
-         * Производилось, они разные
+         * Производилось, они разные, потому что брались от разных объектов
          * Производилось. Объекты не равны, поэтому совпадение их хэшкодов и бакетов очень маловероятно
          */
     }
