@@ -38,13 +38,13 @@ public class User {
         System.out.println("\nРавенство хэшкодов: " + Integer.compare(hashcode1, hashcode2));
         System.out.println(map);
         /**
-         * Пары попали в один бакет, имея равные хэшкоды.
-         * Производилось, они равные, потому что был переопределён hashCode
-         * Производилось. Объекты равны, был переопределён equals
+         * Пары попали в разные бакеты, имея разные хэшкоды.
+         * Не производилось, они попали в разные бакеты
+         * Производилось. Объекты не равны, поэтому совпадение их хэшкодов и бакетов очень маловероятно
          */
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -62,4 +62,5 @@ public class User {
     public int hashCode() {
         return Objects.hash(name, children, birthday);
     }
+     */
 }
