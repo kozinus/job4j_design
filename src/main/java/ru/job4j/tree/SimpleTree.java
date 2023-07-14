@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 public class SimpleTree<E> implements Tree<E> {
-    private Node<E> root;
+    private final Node<E> root;
 
     private Optional<Node<E>> findByPredicate(Predicate<Node<E>> filter) {
         Optional<Node<E>> rsl = Optional.empty();
@@ -27,9 +27,8 @@ public class SimpleTree<E> implements Tree<E> {
 
     @Override
     public boolean add(E parent, E child) {
-        boolean rsl = false;
         Optional<Node<E>> parentNode = findBy(parent);
-        rsl = parentNode.isPresent() && findBy(child).isEmpty();
+        boolean rsl = parentNode.isPresent() && findBy(child).isEmpty();
         if (rsl) {
             parentNode.get().children.add((new Node<>(child)));
         }
@@ -38,7 +37,7 @@ public class SimpleTree<E> implements Tree<E> {
 
     @Override
     public Optional<Node<E>> findBy(E value) {
-        return findByPredicate(x -> x.equals(value));
+        return findByPredicate(x -> x.value.equals(value));
     }
 
     @Override
