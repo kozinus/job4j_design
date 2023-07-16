@@ -24,12 +24,31 @@ class ConfigTest {
     }
 
     @Test
-    void whenIllegalPair() {
-        String path = "./data/IllegalPair.properties";
+    void whenPairHasNoKey() {
+        String path = "./data/NoKey.properties";
         Config config = new Config(path);
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 config::load);
-        assertThat(exception.getMessage()).isEqualTo("Does not contain equal symbols");
+        assertThat(exception.getMessage()).isEqualTo(null);
+    }
+    @Test
+    void whenPairHasNoValue() {
+        String path = "./data/NoValue.properties";
+        Config config = new Config(path);
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                config::load);
+        assertThat(exception.getMessage()).isEqualTo(null);
+    }
+
+    @Test
+    void whenPairHasNoEqualSymbols() {
+        String path = "./data/NoEqualSymbols.properties";
+        Config config = new Config(path);
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                config::load);
+        assertThat(exception.getMessage()).isEqualTo(null);
     }
 }
