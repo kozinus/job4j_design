@@ -1,24 +1,31 @@
 package ru.job4j.io;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class LogFilter {
-    public List<String> filter(String file) {
+    public static List<String> filter(String file) {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            return in.lines().filter(x -> x.contains("404 ")).collect(Collectors.toList());
+            return in.lines().filter(x -> x.split(" ")[8].equals("404")).collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public static void save(List<String> log, String file) {
+        try (PrintWriter out = new PrintWriter(
+                new BufferedOutputStream(
+                        new FileOutputStream(file)
+        ))) {
+            log.forEach(out::println);
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        LogFilter logFilter = new LogFilter();
-        List<String> log = logFilter.filter("data/log.txt");
-        log.forEach(System.out::println);
+        List<String> log = filter("data/log.txt");
+        save(log, "data/404.txt");
     }
 }
