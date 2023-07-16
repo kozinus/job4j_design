@@ -2,12 +2,17 @@ package ru.job4j.io;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class LogFilter {
     public static List<String> filter(String file) {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            return in.lines().filter(x -> x.split(" ")[8].equals("404")).collect(Collectors.toList());
+            Predicate<String> lineFilter = x -> {
+                String[] s = x.split(" ");
+                return s[s.length - 2].equals("404");
+            };
+            return in.lines().filter(lineFilter).collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
