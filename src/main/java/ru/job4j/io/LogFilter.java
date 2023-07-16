@@ -9,7 +9,8 @@ public class LogFilter {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             return in.lines().filter(x -> x.split(" ")[8].equals("404")).collect(Collectors.toList());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
@@ -20,12 +21,13 @@ public class LogFilter {
         ))) {
             log.forEach(out::println);
         } catch (IOException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
         List<String> log = filter("data/log.txt");
         save(log, "data/404.txt");
+        log.forEach(System.out::println);
     }
 }
