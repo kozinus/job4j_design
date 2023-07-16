@@ -23,10 +23,8 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             Predicate<String> lineFilter = x -> {
                 boolean goal = !(x.startsWith("#") || x.isEmpty());
-                if (goal) {
-                    if (!x.contains("=")) {
-                        throw new IllegalArgumentException("Does not contain equal symbols");
-                    }
+                if (goal && !x.contains("=")) {
+                    throw new IllegalArgumentException("Does not contain equal symbols");
                 }
                 return goal;
             };
