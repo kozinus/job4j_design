@@ -17,7 +17,7 @@ public class Analysis {
                     boolean isUnvailable = "400".equals(s[0]) || "500".equals(s[0]);
                     if (isUnvailable == flag) {
                         flag = !flag;
-                        out.print(s[1] + ";" + (flag ? System.lineSeparator() : ""));
+                        out.printf("%s;%s", s[1], (flag ? System.lineSeparator() : ""));
                     }
                 }
             } catch (IOException e) {
