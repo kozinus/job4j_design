@@ -9,6 +9,9 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Root folder is not correct");
+        }
         validationOf2Arguments(args);
         search(Path.of(args[0]), p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
     }
@@ -20,12 +23,8 @@ public class Search {
     }
 
     private static void validationOf2Arguments(String[] args) {
-        if (args.length < 2) {
-            throw new IllegalArgumentException("Root folder is not full");
-        }
-        Path start = Paths.get(args[0]);
-        if (!Files.exists(start)) {
-            throw new IllegalArgumentException(String.format("Not exist %s", start));
+        if (!Files.exists(Paths.get(args[0]))) {
+            throw new IllegalArgumentException(String.format("Not exist %s", args[0]));
         }
         if (!args[1].startsWith(".")) {
             throw new IllegalArgumentException(String.format("Second argument %s is not an extension", args[1]));
