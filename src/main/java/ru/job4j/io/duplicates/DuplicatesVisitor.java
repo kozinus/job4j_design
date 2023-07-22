@@ -35,7 +35,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
             if (filePaths.size() > 1) {
                 System.out.printf("%s - %x%n", file.getName(), file.getSize());
                 for (Path path : filePaths) {
-                    System.out.println(path.toString());
+                    System.out.println(path.toAbsolutePath());
                 }
             }
         }
