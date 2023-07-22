@@ -3,28 +3,19 @@ package ru.job4j.io.duplicates;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    private Hashtable<FileProperty, List<Path>> duplicates = new Hashtable<>();
-
-    private HashSet<FileProperty> files = new HashSet<>();
+    private final HashMap<FileProperty, List<Path>> duplicates = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        if (Files.isRegularFile(file)) {
-            String[] fileName = file.toString().split("\\\\");
-            FileProperty fileProperty = new FileProperty(Files.size(file), fileName[fileName.length - 1]);
-            if (files.contains(fileProperty)) {
-                duplicates.get(fileProperty).add(file);
-            } else {
-                duplicates.put(fileProperty, new ArrayList<>(List.of(file)));
-            }
-            files.add(fileProperty);
+        FileProperty fileProperty = new FileProperty(Files.size(file), file.getFileName().toString());
+        if (duplicates.containsKey(fileProperty)) {
+            duplicates.get(fileProperty).add(file);
+        } else {
+            duplicates.put(fileProperty, new ArrayList<>(List.of(file)));
         }
         return super.visitFile(file, attrs);
     }
