@@ -1,7 +1,5 @@
 package ru.job4j.io.duplicates;
 
-import ru.job4j.map.Map;
-
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
