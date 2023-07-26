@@ -13,22 +13,20 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
-                        if (str.startsWith("GET") && str.contains("msg=")) {
-                            String message = str.substring(str.indexOf("msg=") + 4, str.indexOf("HTTP") - 1);
-                            if ("Hello".equals(message)) {
-                                out.write("Hello, dear friend.".getBytes());
-                                System.out.println("Hello, dear friend.");
-                                break;
-                            } else if ("Exit".equals(message)) {
-                                out.write("Goodbye!".getBytes());
-                                System.out.println("Goodbye!");
-                                server.close();
-                                break;
-                            }
+                    String str = in.readLine();
+                    if (str.startsWith("GET") && str.contains("msg=")) {
+                        String message = str.substring(str.indexOf("msg=") + 4, str.indexOf("HTTP") - 1);
+                        if ("Hello".equals(message)) {
+                            out.write("Hello, dear friend.".getBytes());
+                            System.out.println("Hello, dear friend.");
+                        } else if ("Exit".equals(message)) {
+                            out.write("Goodbye!".getBytes());
+                            System.out.println("Goodbye!");
+                            server.close();
+                        } else {
+                            out.write("What?".getBytes());
+                            System.out.println("What?");
                         }
-                        out.write(String.format("%s\r\n", str).getBytes());
-                        System.out.println(str);
                     }
                     out.flush();
                 }
