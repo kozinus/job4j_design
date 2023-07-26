@@ -19,7 +19,7 @@ public class EchoServer {
                         if ("Hello".equals(message)) {
                             out.write("Hello, dear friend.".getBytes());
                             System.out.println("Hello, dear friend.");
-                        } else if ("Exit".equals(message)) {
+                        } else if ("Bye".equals(message)) {
                             out.write("Goodbye!".getBytes());
                             System.out.println("Goodbye!");
                             server.close();
