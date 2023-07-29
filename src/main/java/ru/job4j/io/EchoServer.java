@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class EchoServer {
 
-    private static final Logger ECHO_SERVER = LoggerFactory.getLogger(UsageLog4j.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
 
     public static void main(String[] args) throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
@@ -35,7 +35,7 @@ public class EchoServer {
                     }
                     out.flush();
                 } catch (IOException e) {
-                    ECHO_SERVER.error("I/O Error", e);
+                    LOG.error("I/O Error", e);
                 }
             }
         }
