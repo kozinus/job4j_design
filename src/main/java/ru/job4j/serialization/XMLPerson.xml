@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<person sex="false" name="Mark" age="30">
+    <infos>
+        <info>Worker</info>
+        <info>Married</info>
+    </infos>
+    <contact zipCode="7" phone="11-111"/>
+</person>
