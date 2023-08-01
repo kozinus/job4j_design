@@ -8,14 +8,14 @@ public class Person {
     public boolean sex;
     public String name;
     public int age;
-    public String[] info;
+    public String[] infos;
     public Contact contact;
 
-    public Person(boolean sex, int age, String name, Contact contact, String[] info) {
+    public Person(boolean sex, int age, String name, Contact contact, String[] infos) {
         this.name = name;
         this.sex = sex;
         this.age = age;
-        this.info = info;
+        this.infos = infos;
         this.contact = contact;
     }
 
@@ -24,7 +24,7 @@ public class Person {
         return "Person{" + "sex=" + sex
                 + ", name='" + name + '\''
                 + ", age=" + age
-                + ", info=" + Arrays.toString(info)
+                + ", info=" + Arrays.toString(infos)
                 + ", contact=" + contact + '}';
     }
 }
