@@ -1,17 +1,15 @@
-drop table dogs_owners;
-drop table dogs_types;
-create table dogs_types (
+create table faculty (
 	id serial primary key,
 	name varchar(255)
 );
 
-create table dogs_owners (
+create table students (
 	id serial primary key,
 	name varchar(255),
-	dog_id int references dogs_types(id)
+	faculty_id int references faculty(id)
 );
 
-insert into dogs_types(name) values ('bulldog');
-insert into dogs_owners(name, dog_id) values ('Mark', 1);
+insert into faculty(name) values ('robotechnics');
+insert into students(name, faculty_id) values ('Kirill', 1);
 
-select * from dogs_types where id in (select dog_id from dogs_owners);
+select * from faculty where id in (select faculty_id from students);

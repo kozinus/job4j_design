@@ -1,25 +1,22 @@
-drop table dogs_owners;
-
-drop table dogs;
-create table dogs_types (
+create table work_route (
 	id serial primary key,
 	name varchar(255)
 );
 
-create table owners_job (
+create table main_jobs (
 	id serial primary key,
 	name varchar(255)
 );
 
-create table dogs_owners (
+create table volunteers (
 	id serial primary key,
 	name varchar(255),
-	dog_id int references dogs_types(id),
-	job_id int references owners_job(id)
+	work_route_id int references work_route(id),
+	main_jobs_id int references main_jobs(id)
 );
 
-insert into dogs_types(name) values ('bulldog');
-insert into owners_job(name) values ('tester');
-insert into dogs_owners(name, dog_id, job_id) values ('Mark', 1, 1);
+insert into work_route(name) values ('ecology');
+insert into main_jobs(name) values ('tester');
+insert into volunteers(name, work_route_id, main_jobs_id) values ('Ilya', 1, 1);
 
-select * from owners_job where id in (select job_id from dogs_owners);
+select * from main_jobs where id in (select main_jobs_id from volunteers);

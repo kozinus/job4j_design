@@ -1,4 +1,3 @@
-drop table dogs_owners;
 create table dogs (
 	id serial primary key,
 	name varchar(255)
