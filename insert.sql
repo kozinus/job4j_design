@@ -1,13 +1,11 @@
-insert into users(name) values ('Mark');
-insert into roles(role_name) values ('admin');
 insert into rules(rule) values ('Rule #1');
+insert into roles(role_name, rule_id) values ('admin', 1);
+insert into users(name, role_id) values ('Mark', 1);
 insert into items(item_name) values ('client database');
 insert into attachs(files_names) values ('db.sql');
 insert into states(state) values ('ok');
 insert into coments(comm_content) values ('accepted');
 insert into categories(category) values ('databases');
-insert into users_roles(user_id, role_id) values (1, 1);
-insert into roles_rules(role_id, rule_id) values (1, 1);
 insert into items_users(item_id, user_id) values (1, 1);
 insert into items_categories(item_id, category_id) values (1, 1);
 insert into items_states(item_id, state_id) values (1, 1);

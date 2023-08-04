@@ -1,15 +1,3 @@
-create table users_roles (
-	id serial primary key,
-	user_id int references users(id),
-	role_id int references roles(id)
-);
-
-create table roles_rules (
-	id serial primary key,
-	role_id int references roles(id),
-	rule_id int references rules(id)
-);
-
 create table items_users (
 	id serial primary key,
 	item_id int references items(id),

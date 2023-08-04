@@ -1,16 +1,18 @@
-create table users (
+create table rules (
 	id serial primary key,
-	name varchar(255)
+	rule varchar(255)
 );
 
 create table roles (
 	id serial primary key,
-	role_name varchar(255)
+	role_name varchar(255),
+	rule_id int references rules(id)
 );
 
-create table rules (
+create table users (
 	id serial primary key,
-	rule varchar(255)
+	name varchar(255),
+	role_id int references roles(id)
 );
 
 create table categories (
