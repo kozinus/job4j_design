@@ -20,8 +20,7 @@ select t.name "Тип", p.name "Название", p.expired_date, p.price
 from product as p
 join type as t
 on p.type_id = t.id
-order by p.price desc
-limit 1;
+where p.price = (select max(price) from product);
 
 select t.name "Тип", count(p.id)
 from product as p
