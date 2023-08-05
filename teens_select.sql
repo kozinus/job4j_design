@@ -1,0 +1,1 @@
+select * from teens t1 cross join teens t2 where t1.sex != t2.sex and t1.id < t2.id;
