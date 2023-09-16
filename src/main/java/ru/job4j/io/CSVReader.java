@@ -16,25 +16,31 @@ public class CSVReader {
              FileOutputStream out = new FileOutputStream(argsName.get("out"))) {
             StringBuilder output = new StringBuilder();
 
+            String delimiter = argsName.get("delimiter");
             String[] filter = argsName.get("filter").split(",");
             ArrayList<String> csvLine =
-                    new ArrayList<>(Arrays.asList(csvScan.nextLine().split(argsName.get("delimiter"))));
+                    new ArrayList<>(Arrays.asList(csvScan.nextLine().split(delimiter)));
             for (String key : filter) {
                 orderList.add(csvLine.indexOf(key));
-                output.append(key).append(argsName.get("delimiter"));
+                output.append(key).append(delimiter);
             }
-            output.deleteCharAt(output.lastIndexOf(argsName.get("delimiter")));
+            output.deleteCharAt(output.lastIndexOf(delimiter));
             output.append(System.lineSeparator());
 
             while (csvScan.hasNext()) {
-                csvLine = new ArrayList<>(Arrays.asList(csvScan.nextLine().split(argsName.get("delimiter"))));
+                csvLine = new ArrayList<>(Arrays.asList(csvScan.nextLine().split(delimiter)));
                 for (int key : orderList) {
-                    output.append(csvLine.get(key)).append(argsName.get("delimiter"));
+                    output.append(csvLine.get(key)).append(delimiter);
                 }
-                output.deleteCharAt(output.lastIndexOf(argsName.get("delimiter")));
+                output.deleteCharAt(output.lastIndexOf(delimiter));
                 output.append(System.lineSeparator());
             }
-            out.write(output.toString().getBytes());
+
+            if (argsName.get("out").equals("stdout")) {
+                System.out.println(output);
+            } else {
+                out.write(output.toString().getBytes());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

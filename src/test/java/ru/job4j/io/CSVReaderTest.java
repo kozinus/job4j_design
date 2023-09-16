@@ -6,6 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Files;
+import java.util.Scanner;
 
 class CSVReaderTest {
 
