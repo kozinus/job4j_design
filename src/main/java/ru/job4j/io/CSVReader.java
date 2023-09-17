@@ -1,20 +1,16 @@
 package ru.job4j.io;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.PrintStream;
-import java.nio.file.Path;
+import java.io.*;
+
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 public class CSVReader {
-    public static void handle(ArgsName argsName) throws Exception {
+    public static void handle(ArgsName argsName) {
         ArrayList<Integer> orderList = new ArrayList<>();
         try (FileInputStream in = new FileInputStream(argsName.get("path"));
-                Scanner csvScan = new Scanner(in);
-             FileWriter out = new FileWriter(argsName.get("out"))) {
+             Scanner csvScan = new Scanner(in);
+             BufferedWriter out = new BufferedWriter(new FileWriter(argsName.get("out")))) {
             StringBuilder output = new StringBuilder();
 
             String delimiter = argsName.get("delimiter");
