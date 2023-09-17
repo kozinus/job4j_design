@@ -2,6 +2,7 @@ package ru.job4j.io;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.PrintStream;
 import java.nio.file.Path;
 import java.util.*;
@@ -13,7 +14,7 @@ public class CSVReader {
         ArrayList<Integer> orderList = new ArrayList<>();
         try (FileInputStream in = new FileInputStream(argsName.get("path"));
                 Scanner csvScan = new Scanner(in);
-             FileOutputStream out = new FileOutputStream(argsName.get("out"))) {
+             FileWriter out = new FileWriter(argsName.get("out"))) {
             StringBuilder output = new StringBuilder();
 
             String delimiter = argsName.get("delimiter");
@@ -36,10 +37,10 @@ public class CSVReader {
                 output.append(System.lineSeparator());
             }
 
-            if (argsName.get("out").equals("stdout")) {
+            if ("stdout".equals(argsName.get("out"))) {
                 System.out.println(output);
             } else {
-                out.write(output.toString().getBytes());
+                out.write(output.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
